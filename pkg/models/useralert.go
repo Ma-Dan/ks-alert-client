@@ -1,9 +1,21 @@
 package models
 
 import (
-	"errors"
 	"github.com/jinzhu/gorm"
 	"kubesphere.io/ks-alert-client/pkg/utils/dbutil"
+)
+
+type ResourceType string
+
+const (
+	Cluster     ResourceType = "cluster"
+	Node        ResourceType = "node"
+	Workspace   ResourceType = "workspace"
+	Namespace   ResourceType = "namespace"
+	Application ResourceType = "application"
+	Workload    ResourceType = "workload"
+	Pod         ResourceType = "pod"
+	Container   ResourceType = "container"
 )
 
 // table `user_alert_bindings` record alerts created by user
@@ -12,82 +24,47 @@ type UserAlertBinding struct {
 	gorm.Model
 	UserID        string `gorm:"type:varchar(50);not null;"`
 	AlertConfigID string `gorm:"type:varchar(50);not null;"`
+	ResourceType  string `gorm:"type:varchar(50);not null;"`
+	ResourceName  string `gorm:"type:varchar(50);not null;"`
 	ProductID     string `gorm:"type:varchar(50);not null;"`
+	// local cluster
+	Cluster   string
+	Node      string
+	Workspace string
+	Namespace string
+	Workload  string
+	Pod       string
 }
 
-// registed enterprise
-type RegisteredEnterprise struct {
-	gorm.Model
-	EnterpriseID string `gorm:"type:varchar(50);not null;"`
-}
-
-// registed product
-type RegisteredProduct struct {
-	gorm.Model
-	ProductID    string `gorm:"type:varchar(50);not null;"`
-	EnterpriseID string `gorm:"type:varchar(50);not null;"`
-}
-
-func CreateRegisteredEnterpriseItem(ent *RegisteredEnterprise) error {
-
-	if ent.EnterpriseID == "" {
-		return errors.New("registered enterprise has no enterprise_id," +
-			" perhaps this enterprise does not register")
-	}
-
+func GetAlertByResourceName(userAlertBind *UserAlertBinding) (*[]UserAlertBinding, error) {
 	db, err := dbutil.DBClient()
 	if err != nil {
 		panic(err)
 	}
 
-	err = db.Model(&RegisteredEnterprise{}).Create(ent).Error
-	return err
+	var userAlerts []UserAlertBinding
+	db.Model(&UserAlertBinding{}).Where(userAlertBind).Find(&userAlerts)
+	return &userAlerts, db.Error
 }
 
-func CreateRegisteredProductItem(product *RegisteredProduct) error {
-
-	if product.ProductID == "" {
-		return errors.New("registered product has no product_id," +
-			" perhaps this product does not register")
-	}
-
-	if product.EnterpriseID == "" {
-		return errors.New("registered enterprise has no enterprise_id," +
-			" perhaps this enterprise does not register")
-	}
-
+func GetAlertByUserID(userID string) (*[]UserAlertBinding, error) {
 	db, err := dbutil.DBClient()
 	if err != nil {
 		panic(err)
 	}
 
-	err = db.Model(&RegisteredProduct{}).Create(product).Error
-	return err
+	var userAlerts []UserAlertBinding
+	db.Model(&UserAlertBinding{}).Where(&UserAlertBinding{UserID: userID}).Find(&userAlerts)
+	return &userAlerts, db.Error
 }
 
-// receiver group
-// alert_rule group
-// resource group
-func CreateUserAlertBindingItem(receivers *[]Receiver, resources *ResourceGroup) error {
-
-	db, err := dbutil.DBClient()
-	if err != nil {
-		panic(err)
-	}
-
-	tx := db.Begin()
-
-	if tx.Error != nil {
-		return err
-	}
-
-	defer func() {
-		if r := recover(); r != nil {
-			tx.Rollback()
+func GetAlertConfigIDs(userAlerts *[]UserAlertBinding) []string {
+	var alertConfigIDs []string
+	for i := 0; i < len(*userAlerts); i++ {
+		if (*userAlerts)[i].AlertConfigID != "" {
+			alertConfigIDs = append(alertConfigIDs, (*userAlerts)[i].AlertConfigID)
 		}
-	}()
+	}
 
-	// TODO
-
-	return tx.Commit().Error
+	return alertConfigIDs
 }
