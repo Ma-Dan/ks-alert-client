@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="adf959b3-6021-476f-8a93-6c25eca3a1ad" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/pkg/models/tables.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/models/tables.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/models/useralert.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/models/useralert.go" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="alert_client@139.198.190.141" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="alert_client@139.198.190.141" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="alert_client@139.198.190.141" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="alert_client: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="ks-alert-client" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cmd/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gopkg.lock" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gopkg.lock">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="363">
+              <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pkg/service/server.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="api.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pkg/service/api.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dispatcherclient.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pkg/client/dispatcherclient.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+              <folding>
+                <element signature="e#16#136#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="alert_handler.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pkg/handler/alert_handler.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-338">
+              <caret line="48" column="44" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
+              <folding>
+                <element signature="e#17#321#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="alertrule_handler.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pkg/handler/alertrule_handler.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="enterprise_handler.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pkg/handler/enterprise_handler.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="metric_handler.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pkg/handler/metric_handler.go">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>models</find>
+      <find>client.DBClient()</find>
+      <find>get alert config by id</find>
+      <find>pb</find>
+      <find>.Required(true)</find>
+      <find>kubesphere.io</find>
+      <find>kubesphere.io/ks-alert-client</find>
+      <find>go.etcd.io</find>
+      <find>coreos</find>
+      <find>etcd</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>dbutil.DBClient()</replace>
+      <replace>github.com/carmanzhang</replace>
+      <replace>github.com/carmanzhang/ks-alert-client</replace>
+    </replaceStrings>
+  </component>
+  <component name="GOROOT" path="C:\Program Files\Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GoDepProject">
+    <integration-enabled>true</integration-enabled>
+    <exec-path>C:\Users\Carman\go\bin\dep.exe</exec-path>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/pkg/utils/dbutil/dbclient.go" />
+        <option value="$PROJECT_DIR$/pkg/handler/silence_handler.go" />
+        <option value="$PROJECT_DIR$/pkg/handler/receiver_handler.go" />
+        <option value="$PROJECT_DIR$/pkg/models/useralert.go" />
+        <option value="$PROJECT_DIR$/pkg/handler/resource.go" />
+        <option value="$PROJECT_DIR$/pkg/handler/resource_handler.go" />
+        <option value="$PROJECT_DIR$/pkg/constant/constant.go" />
+        <option value="$PROJECT_DIR$/cmd/main.go" />
+        <option value="$PROJECT_DIR$/pkg/models/tables.go" />
+        <option value="$PROJECT_DIR$/pkg/service/api.go" />
+        <option value="$PROJECT_DIR$/pkg/handler/enterprise_handler.go" />
+        <option value="$PROJECT_DIR$/pkg/client/dispatcherclient.go" />
+        <option value="$PROJECT_DIR$/pkg/handler/alert_handler.go" />
+        <option value="$PROJECT_DIR$/pkg/service/server.go" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="960" />
+    <option name="width" value="960" />
+    <option name="height" value="1032" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ks-alert-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ks-alert-client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ks-alert-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ks-alert-client" type="462c0819:PsiDirectoryNode" />
+              <item name="cmd" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ks-alert-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ks-alert-client" type="462c0819:PsiDirectoryNode" />
+              <item name="pkg" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ks-alert-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ks-alert-client" type="462c0819:PsiDirectoryNode" />
+              <item name="pkg" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ks-alert-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ks-alert-client" type="462c0819:PsiDirectoryNode" />
+              <item name="pkg" type="462c0819:PsiDirectoryNode" />
+              <item name="handler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ks-alert-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ks-alert-client" type="462c0819:PsiDirectoryNode" />
+              <item name="pkg" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ks-alert-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ks-alert-client" type="462c0819:PsiDirectoryNode" />
+              <item name="pkg" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ks-alert-client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="database.console.LAST_STATE" value="true" />
+    <property name="go.gopath.indexing.explicitly.defined" value="true" />
+    <property name="go.vendoring.notification.had.been.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Carman\go\src\kubesphere.io\ks-alert-client\pkg\handler" />
+      <recent name="C:\Users\Carman\go\src\kubesphere.io\ks-alert-client\pkg\service" />
+      <recent name="C:\Users\Carman\go\src\kubesphere.io\ks-alert-client\pkg" />
+      <recent name="C:\Users\Carman\go\src\kubesphere.io\ks-alert-client\pkg\utils" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="ks-alert-client" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/cmd/main.go" />
+      <package value="kubesphere.io/ks-alert-client" />
+      <directory value="$PROJECT_DIR$/" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build main.go" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4986339" visible="true" weight="0.18562232" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Database" order="3" weight="0.3299356" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.21195039" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.319053" />
+      <window_info id="Favorites" order="2" sideWeight="0.50136614" side_tool="true" weight="0.17864807" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.42953777" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Database Console" order="8" weight="0.32919955" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="create client side code use gprc" />
+    <MESSAGE value="initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/pkg/service/api.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ks-alert/pkg/dispatcher/pb/alert.pb.go" />
+    <entry file="file://$PROJECT_DIR$/pkg/constant/constant.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="12" column="26" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/alertrule_handler.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/enterprise_handler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="15" column="8" lean-forward="true" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/service/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/client/dispatcherclient.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="11" column="40" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/alert_handler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3132">
+          <caret line="125" column="5" lean-forward="true" selection-start-line="125" selection-start-column="5" selection-end-line="125" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/service/api.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2997">
+          <caret line="111" column="34" lean-forward="true" selection-start-line="111" selection-start-column="34" selection-end-line="111" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/product_handler.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/service/api.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1377">
+          <caret line="56" column="55" lean-forward="true" selection-start-line="56" selection-start-column="55" selection-end-line="56" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/product_handler.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/utils/dbutil/dbclient_test.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/utils/dbutil/dbclient.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/swagger-ui/dist/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ks-alert/pkg/dispatcher/handler/alert_handler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ks-alert/pkg/dispatcher/service/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="40" column="79" selection-start-line="40" selection-start-column="79" selection-end-line="40" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../github.com/emicklei/go-restful/web_service.go" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e11bfc20-8353-434d-86b5-a495fecb23a7/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="das://e11bfc20-8353-434d-86b5-a495fecb23a7/schema/alert_client/table/registered_enterprises">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e11bfc20-8353-434d-86b5-a495fecb23a7/schema/alert_client/table/registered_products">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ks-alert/pkg/dispatcher/pb/alert.pb.go" />
+    <entry file="file://$PROJECT_DIR$/pkg/models/useralert.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/resource.go" />
+    <entry file="file://$PROJECT_DIR$/pkg/constant/constant.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/product_handler.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/receiver_handler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" selection-start-line="4" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/resource_handler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/resourcetype_handler.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/silence_handler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/models/useralert_test.go" />
+    <entry file="file://$PROJECT_DIR$/pkg/models/tables.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-122">
+          <caret line="2" column="46" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ks-alert-client-go/pkg/handler/alert_handler.go" />
+    <entry file="file://$PROJECT_DIR$/../../../google.golang.org/grpc/vet.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../google.golang.org/grpc/version.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../google.golang.org/grpc/naming/naming.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../google.golang.org/grpc/balancer.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="144" column="27" selection-start-line="144" selection-start-column="27" selection-end-line="144" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ks-alert/pkg/registry/resolver.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/carmanzhang/ks-alert/pkg/dispatcher/pb/alert.pb.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46278">
+          <caret line="1763" column="5" selection-start-line="1763" selection-start-column="5" selection-end-line="1763" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/client/dispatcherclient.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding>
+            <element signature="e#16#136#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gopkg.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/carmanzhang/ks-alert/pkg/registry/watcher.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/alertrule_handler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/enterprise_handler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/metric_handler.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/handler/alert_handler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-338">
+          <caret line="48" column="44" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
+          <folding>
+            <element signature="e#17#321#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/service/api.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/service/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
