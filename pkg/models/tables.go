@@ -1,6 +1,6 @@
 package models
 
-import "kubesphere.io/ks-alert-client/pkg/utils/dbutil"
+import "github.com/carmanzhang/ks-alert-client/pkg/utils/dbutil"
 
 func init() {
 

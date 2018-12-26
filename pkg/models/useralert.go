@@ -1,8 +1,8 @@
 package models
 
 import (
+	"github.com/carmanzhang/ks-alert-client/pkg/utils/dbutil"
 	"github.com/jinzhu/gorm"
-	"kubesphere.io/ks-alert-client/pkg/utils/dbutil"
 )
 
 type ResourceType string

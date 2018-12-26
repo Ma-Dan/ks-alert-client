@@ -1,9 +1,9 @@
 package handler
 
 import (
+	"github.com/carmanzhang/ks-alert/pkg/dispatcher/pb"
 	"github.com/emicklei/go-restful"
 	"github.com/golang/glog"
-	"kubesphere.io/ks-alert/pkg/dispatcher/pb"
 )
 
 func CreateEnterprise(request *restful.Request, response *restful.Response) {

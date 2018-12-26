@@ -38,7 +38,7 @@ func handleSwagger() {
 		APIPath:     "/apidocs.json",
 		PostBuildSwaggerObjectHandler: enrichSwaggerObject}
 	restful.DefaultContainer.Add(restfulspec.NewOpenAPIService(config))
-	http.Handle("/apidocs/", http.StripPrefix("/apidocs/", http.FileServer(http.Dir("C:/Users/Carman/go/src/kubesphere.io/ks-alert-client/pkg/swagger-ui/dist"))))
+	http.Handle("/apidocs/", http.StripPrefix("/apidocs/", http.FileServer(http.Dir("C:/Users/Carman/go/src/github.com/carmanzhang/ks-alert-client/pkg/swagger-ui/dist"))))
 }
 
 func enrichSwaggerObject(swo *spec.Swagger) {
@@ -50,11 +50,7 @@ func enrichSwaggerObject(swo *spec.Swagger) {
 				Email: "carmanzhang@yunify.com",
 				URL:   "",
 			},
-			License: &spec.License{
-				Name: "MIT License",
-				URL:  "http://mit.org",
-			},
-			Version: "1.0.0",
+			Version: "2.0.0",
 		},
 	}
 }

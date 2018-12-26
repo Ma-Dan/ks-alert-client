@@ -1,9 +1,9 @@
 package client
 
 import (
+	"github.com/carmanzhang/ks-alert/pkg/registry"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	"kubesphere.io/ks-alert/pkg/registry"
 	"time"
 )
 

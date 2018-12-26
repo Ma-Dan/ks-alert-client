@@ -3,12 +3,12 @@ package handler
 import (
 	"context"
 	"fmt"
+	. "github.com/carmanzhang/ks-alert-client/pkg/client"
+	"github.com/carmanzhang/ks-alert-client/pkg/constant"
+	"github.com/carmanzhang/ks-alert-client/pkg/models"
+	"github.com/carmanzhang/ks-alert/pkg/dispatcher/pb"
 	"github.com/emicklei/go-restful"
-	"k8s.io/klog/glog"
-	. "kubesphere.io/ks-alert-client/pkg/client"
-	"kubesphere.io/ks-alert-client/pkg/constant"
-	"kubesphere.io/ks-alert-client/pkg/models"
-	"kubesphere.io/ks-alert/pkg/dispatcher/pb"
+	"github.com/golang/glog"
 )
 
 func CreateAlert(request *restful.Request, response *restful.Response) {
@@ -26,7 +26,7 @@ func CreateAlert(request *restful.Request, response *restful.Response) {
 
 	//defer conn.Close()
 
-	client := pb.NewAlertEngineClient(conn)
+	client := pb.NewAlertConfigHandlerClient(conn)
 	//
 	alertConfigResponse, err := client.CreateAlertConfig(context.Background(), &alertConfig)
 	fmt.Println(alertConfigResponse, err)
@@ -46,7 +46,7 @@ func RetrieveAlert(request *restful.Request, response *restful.Response) {
 
 	defer conn.Close()
 
-	client := pb.NewAlertEngineClient(conn)
+	client := pb.NewAlertConfigHandlerClient(conn)
 
 	var alertConfigIDs []string
 	if alertConfigID != "" {
