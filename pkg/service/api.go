@@ -12,20 +12,20 @@ type AlertAPI struct{}
 func (u AlertAPI) WebService() *restful.WebService {
 	ws := new(restful.WebService)
 	ws.
-		Path("/alert/v1").
+		Path("/apis/alerting.kubesphere.io/v1").
 		Consumes(restful.MIME_JSON).
 		Produces(restful.MIME_JSON)
 
 	tags := []string{"alert apis"}
 
-	ws.Route(ws.POST("/alerts").To(handler.CreateAlert).
+	ws.Route(ws.POST("/alert").To(handler.CreateAlert).
 		Doc("create AlertConfig").
 		Reads(AlertConfig{}).
 		Writes(AlertConfigResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
 	// get batch of alert configs by resource_name
-	ws.Route(ws.GET("/alerts").To(handler.RetrieveAlert).
+	ws.Route(ws.GET("/alert").To(handler.RetrieveAlert).
 		Doc("retrieve AlertConfig").
 		// get alert config by userid
 		Param(restful.QueryParameter("user_id", "").Required(false)).
@@ -39,16 +39,19 @@ func (u AlertAPI) WebService() *restful.WebService {
 		Param(restful.QueryParameter("super_resource_name", "").Required(false)).
 		// get alert config by alert_id
 		Param(restful.QueryParameter("alert_config_id", "get alert config by id").Required(false)).
+		// get alert config by alert_name + super_resource_type + super_resource_name,
+		// alert_name is unique in any super_resource_name
+		Param(restful.QueryParameter("alert_name", "get alert config by id").Required(false)).
 		Writes([]AlertConfigResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
-	ws.Route(ws.PUT("/alerts").To(handler.UpdateAlert).
+	ws.Route(ws.PUT("/alert").To(handler.UpdateAlert).
 		Doc("update AlertConfig").
 		Reads(AlertConfig{}).
 		Writes(AlertConfigResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
-	ws.Route(ws.DELETE("/alerts").To(handler.DeleteAlert).
+	ws.Route(ws.DELETE("/alert").To(handler.DeleteAlert).
 		Doc("delete AlertConfig").
 		Param(restful.QueryParameter("alert_config_id", "delete alert config by id")).
 		Writes(AlertConfigResponse{}).
@@ -56,7 +59,7 @@ func (u AlertAPI) WebService() *restful.WebService {
 
 	tags = []string{"alert history api"}
 	// get alert history
-	ws.Route(ws.GET("/alerts/history").To(handler.RetrieveAlertHistory).
+	ws.Route(ws.GET("/alert/history").To(handler.RetrieveAlertHistory).
 		Doc("retrieve alert history").
 		// get alert history by alert_history_id
 		Param(restful.QueryParameter("alert_history_id", "").Required(false)).
@@ -79,30 +82,6 @@ func (u AlertAPI) WebService() *restful.WebService {
 		Param(restful.QueryParameter("start_time", "").Required(false)).
 		Param(restful.QueryParameter("end_time", "").Required(false)).
 		Writes(AlertHistoryResponse{}).
-		Metadata(restfulspec.KeyOpenAPITags, tags))
-
-	tags = []string{"receiver api"}
-	ws.Route(ws.GET("/receivers").To(handler.SearchReceiver).
-		Doc("list receivers").
-		Param(restful.QueryParameter("operator", "search")).
-		Param(restful.QueryParameter("receiver_name", "").Required(false)).
-		Param(restful.QueryParameter("email", "").Required(false)).
-		Param(restful.QueryParameter("phone", "").Required(false)).
-		Param(restful.QueryParameter("wechat", "").Required(false)).
-		Writes([]Receiver{}).
-		Metadata(restfulspec.KeyOpenAPITags, tags))
-
-	tags = []string{"resource api"}
-	ws.Route(ws.GET("/resource").To(handler.GetResource).
-		Doc("get resource spec").
-		Param(restful.QueryParameter("cluster", "").Required(false)).
-		Param(restful.QueryParameter("node", "").Required(false)).
-		Param(restful.QueryParameter("workspace", "").Required(false)).
-		Param(restful.QueryParameter("namespace", "").Required(false)).
-		Param(restful.QueryParameter("workload", "").Required(false)).
-		Param(restful.QueryParameter("resource_name", "")).
-		Param(restful.QueryParameter("resource_type", "")).
-		Writes(Resource{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
 	//****************************************************************************************************
@@ -171,26 +150,26 @@ func (u AlertAPI) WebService() *restful.WebService {
 	// product crud
 	tags = []string{"product apis"}
 
-	ws.Route(ws.POST("/product").To(handler.CreateProduct).
+	ws.Route(ws.POST("/product").To(handler.HandlerProduct).
 		Doc("create product").
 		Reads(Product{}).
 		Writes(ProductResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
-	ws.Route(ws.GET("/product").To(handler.RetrieveProduct).
+	ws.Route(ws.GET("/product").To(handler.HandlerProduct).
 		Doc("retrieve product").
 		Param(restful.QueryParameter("product_id", "")).
 		Param(restful.QueryParameter("product_name", "")).
 		Writes(ProductResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
-	ws.Route(ws.PUT("/product").To(handler.UpdateProduct).
+	ws.Route(ws.PUT("/product").To(handler.HandlerProduct).
 		Doc("update product").
 		Reads(Product{}).
 		Writes(ProductResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
-	ws.Route(ws.DELETE("/product").To(handler.DeleteProduct).
+	ws.Route(ws.DELETE("/product").To(handler.HandlerProduct).
 		Doc("delete product").
 		Param(restful.QueryParameter("product_id", "")).
 		Param(restful.QueryParameter("product_name", "")).
@@ -201,13 +180,13 @@ func (u AlertAPI) WebService() *restful.WebService {
 	// resource_type crud
 	tags = []string{"resource type apis"}
 
-	ws.Route(ws.POST("/resource_type").To(handler.CreateResourceType).
+	ws.Route(ws.POST("/resource_type").To(handler.HandlerResourceType).
 		Doc("create resource_type").
 		Reads(ResourceType{}).
 		Writes(ResourceTypeResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
-	ws.Route(ws.GET("/resource_type").To(handler.RetrieveResourceType).
+	ws.Route(ws.GET("/resource_type").To(handler.HandlerResourceType).
 		Doc("retrieve resource_type").
 		Param(restful.QueryParameter("resource_type_id", "")).
 		// or get resource type by resource_type_name + enterprise + product
@@ -215,13 +194,13 @@ func (u AlertAPI) WebService() *restful.WebService {
 		Writes(ResourceTypeResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
-	ws.Route(ws.PUT("/resource_type").To(handler.UpdateResourceType).
+	ws.Route(ws.PUT("/resource_type").To(handler.HandlerResourceType).
 		Doc("update resource_type").
 		Reads(ResourceType{}).
 		Writes(ResourceTypeResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
-	ws.Route(ws.DELETE("/resource_type").To(handler.DeleteResourceType).
+	ws.Route(ws.DELETE("/resource_type").To(handler.HandlerResourceType).
 		Doc("delete resource_type").
 		Param(restful.QueryParameter("resource_type_id", "")).
 		// or delete resource type by resource_type_name + enterprise + product
@@ -235,8 +214,8 @@ func (u AlertAPI) WebService() *restful.WebService {
 
 	ws.Route(ws.POST("/alert_rule").To(handler.CreateAlertRule).
 		Doc("create alert_rule").
-		Reads(AlertRule{}).
-		Writes(AlertRuleResponse{}).
+		Reads(AlertRuleGroup{}).
+		Writes(AlertRuleGroupResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
 	ws.Route(ws.GET("/alert_rule").To(handler.RetrieveAlertRule).
@@ -247,13 +226,13 @@ func (u AlertAPI) WebService() *restful.WebService {
 		Param(restful.QueryParameter("alert_rule_name", "")).
 		// or get alert rule by resourc_family, example: list all cluster level alert rule
 		Param(restful.QueryParameter("resource_family", "")).
-		Writes([]AlertRuleResponse{}).
+		Writes(AlertRuleGroupResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
 	ws.Route(ws.PUT("/alert_rule").To(handler.UpdateAlertRule).
 		Doc("update alert_rule").
 		Reads(AlertRule{}).
-		Writes(AlertRuleResponse{}).
+		Writes(AlertRuleGroupResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
 	ws.Route(ws.DELETE("/alert_rule").To(handler.DeleteAlertRule).
@@ -262,7 +241,75 @@ func (u AlertAPI) WebService() *restful.WebService {
 		// or delete alert rule by alert_rule_name + resource_type_name + enterprise + product
 		Param(restful.QueryParameter("resource_type_name", "")).
 		Param(restful.QueryParameter("alert_rule_name", "")).
-		Writes(AlertRuleResponse{}).
+		Writes(AlertRuleGroupResponse{}).
+		Metadata(restfulspec.KeyOpenAPITags, tags))
+
+	//****************************************************************************************************
+	tags = []string{"receiver api"}
+	ws.Route(ws.POST("/receiver").To(handler.CreateReceiver).
+		Doc("create receiver group").
+		Reads(ReceiverGroup{}).
+		Writes(ReceiverGroupResponse{}).
+		Metadata(restfulspec.KeyOpenAPITags, tags))
+
+	ws.Route(ws.GET("/receiver").To(handler.RetrieveReceiver).
+		Doc("retrieve receiver").
+		Param(restful.QueryParameter("operator", "search")).
+		Param(restful.QueryParameter("receiver_name", "").Required(false)).
+		Param(restful.QueryParameter("email", "").Required(false)).
+		Param(restful.QueryParameter("phone", "").Required(false)).
+		Param(restful.QueryParameter("wechat", "").Required(false)).
+		Writes(ReceiverGroupResponse{}).
+		Metadata(restfulspec.KeyOpenAPITags, tags))
+
+	ws.Route(ws.PUT("/receiver").To(handler.UpdateReceiver).
+		Doc("update receiver").
+		Reads(ReceiverGroup{}).
+		Writes(ReceiverGroupResponse{}).
+		Metadata(restfulspec.KeyOpenAPITags, tags))
+
+	ws.Route(ws.DELETE("/receiver").To(handler.DeleteReceiver).
+		Doc("delete receiver").
+		Param(restful.QueryParameter("receiver_id", "")).
+		// or delete alert rule by receiver_name + receiver_type_name + enterprise + product
+		Param(restful.QueryParameter("receiver_type_name", "")).
+		Param(restful.QueryParameter("receiver_name", "")).
+		Writes(ReceiverGroupResponse{}).
+		Metadata(restfulspec.KeyOpenAPITags, tags))
+
+	//****************************************************************************************************
+	tags = []string{"resource api"}
+	ws.Route(ws.POST("/resource").To(handler.CreateResource).
+		Doc("create resource group").
+		Reads(ResourceGroup{}).
+		Writes(ResourceGroupResponse{}).
+		Metadata(restfulspec.KeyOpenAPITags, tags))
+
+	ws.Route(ws.GET("/resource").To(handler.RetrieveResource).
+		Doc("retrieve resource").
+		Param(restful.QueryParameter("cluster", "").Required(false)).
+		Param(restful.QueryParameter("node", "").Required(false)).
+		Param(restful.QueryParameter("workspace", "").Required(false)).
+		Param(restful.QueryParameter("namespace", "").Required(false)).
+		Param(restful.QueryParameter("workload", "").Required(false)).
+		Param(restful.QueryParameter("resource_name", "")).
+		Param(restful.QueryParameter("resource_type", "")).
+		Writes(ResourceGroupResponse{}).
+		Metadata(restfulspec.KeyOpenAPITags, tags))
+
+	ws.Route(ws.PUT("/resource").To(handler.UpdateResource).
+		Doc("update resource").
+		Reads(ResourceGroup{}).
+		Writes(ResourceGroupResponse{}).
+		Metadata(restfulspec.KeyOpenAPITags, tags))
+
+	ws.Route(ws.DELETE("/resource").To(handler.DeleteResource).
+		Doc("delete resource").
+		Param(restful.QueryParameter("resource_id", "")).
+		// or delete alert rule by resource_name + resource_type_name + enterprise + product
+		Param(restful.QueryParameter("resource_type_name", "")).
+		Param(restful.QueryParameter("resource_name", "")).
+		Writes(ResourceGroupResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
 	return ws

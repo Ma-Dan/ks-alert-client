@@ -24,16 +24,25 @@ type UserAlertBinding struct {
 	gorm.Model
 	UserID        string `gorm:"type:varchar(50);not null;"`
 	AlertConfigID string `gorm:"type:varchar(50);not null;"`
-	ResourceType  string `gorm:"type:varchar(50);not null;"`
-	ResourceName  string `gorm:"type:varchar(50);not null;"`
-	ProductID     string `gorm:"type:varchar(50);not null;"`
+
+	ResourceType string `gorm:"type:varchar(50);not null;"`
+	ResourceName string `gorm:"type:varchar(50);not null;"`
+
+	// unique in all SuperResourceName
+	AlertConfigName        string `gorm:"type:varchar(50);not null;"`
+	AlertConfigDisplayName string `gorm:"type:varchar(50);not null;"`
+
+	ParentResourceType string `gorm:"type:varchar(50);not null;"`
+	SuperResourceName  string `gorm:"type:varchar(50);not null;"`
+
+	ProductID string `gorm:"type:varchar(50);not null;"`
 	// local cluster
-	Cluster   string
-	Node      string
-	Workspace string
-	Namespace string
-	Workload  string
-	Pod       string
+	Cluster   string `gorm:"type:varchar(50);"`
+	Node      string `gorm:"type:varchar(50);"`
+	Workspace string `gorm:"type:varchar(50);"`
+	Namespace string `gorm:"type:varchar(50);"`
+	Workload  string `gorm:"type:varchar(50);"`
+	Pod       string `gorm:"type:varchar(50);"`
 }
 
 func GetAlertByResourceName(userAlertBind *UserAlertBinding) (*[]UserAlertBinding, error) {

@@ -2,7 +2,7 @@ package constant
 
 const (
 	Enterprise = "QingCloud"
-	Product    = "Kubesphere"
+	Product    = "KubeSphere"
 )
 
 const (

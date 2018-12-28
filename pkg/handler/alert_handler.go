@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	. "github.com/carmanzhang/ks-alert-client/pkg/client"
-	"github.com/carmanzhang/ks-alert-client/pkg/constant"
 	"github.com/carmanzhang/ks-alert-client/pkg/models"
 	"github.com/carmanzhang/ks-alert/pkg/dispatcher/pb"
 	"github.com/emicklei/go-restful"
@@ -19,7 +18,7 @@ func CreateAlert(request *restful.Request, response *restful.Response) {
 		glog.Errorln(err)
 	}
 
-	conn, err := GetDispatcherGrpcLoadBalancerClient(constant.DispatcherServerName, fmt.Sprintf("http://%s:%d", constant.ETCDHost, constant.ETCDPort))
+	conn, err := GetDispatcherGrpcLoadBalanceClient()
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -39,7 +38,7 @@ func RetrieveAlert(request *restful.Request, response *restful.Response) {
 	// find alert_config by alert_config_id
 	alertConfigID := request.QueryParameter("alert_config_id")
 
-	conn, err := GetDispatcherGrpcLoadBalancerClient(constant.DispatcherServerName, fmt.Sprintf("%s:%d", constant.ETCDHost, constant.ETCDPort))
+	conn, err := GetDispatcherGrpcLoadBalanceClient()
 	if err != nil {
 		fmt.Println(err)
 	}

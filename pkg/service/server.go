@@ -28,7 +28,8 @@ func enableCORS() {
 		AllowedHeaders: []string{"Content-Type", "Accept"},
 		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE"},
 		CookiesAllowed: false,
-		Container:      restful.DefaultContainer}
+		//AllowedDomains:[]string{"*"},
+		Container: restful.DefaultContainer}
 	restful.DefaultContainer.Filter(cors.Filter)
 }
 
