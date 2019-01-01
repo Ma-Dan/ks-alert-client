@@ -3,9 +3,11 @@ package handler
 import (
 	"context"
 	"github.com/carmanzhang/ks-alert-client/pkg/client"
+	"github.com/carmanzhang/ks-alert-client/pkg/constant"
 	"github.com/carmanzhang/ks-alert/pkg/dispatcher/pb"
 	"github.com/emicklei/go-restful"
 	"github.com/golang/glog"
+	"google.golang.org/grpc"
 	"net/http"
 )
 
@@ -228,4 +230,17 @@ func HandlerProduct(request *restful.Request, response *restful.Response) {
 		}
 	}
 
+}
+
+// GetProductID by resource_type_name + enterprise_name + product_name
+func GetProductID(conn *grpc.ClientConn) string {
+	cli := pb.NewProductHandlerClient(conn)
+	prod, err := cli.GetProduct(context.Background(), &pb.ProductSpec{
+		ProductName: constant.Product,
+	})
+	if err != nil {
+		glog.Error(err.Error())
+		return ""
+	}
+	return prod.Product.ProductId
 }

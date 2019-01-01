@@ -5,6 +5,7 @@ import (
 	"github.com/emicklei/go-restful"
 	"github.com/emicklei/go-restful-openapi"
 	"github.com/go-openapi/spec"
+	"github.com/golang/glog"
 	"log"
 	"net/http"
 )
@@ -20,6 +21,7 @@ func Run() {
 	log.Printf("Get the API using http://localhost:8080/apidocs.json")
 	log.Printf("Open Swagger UI using http://localhost:8080/apidocs/") // ?url=http://localhost:8080/apidocs.json
 	log.Print(http.ListenAndServe(":8080", nil))
+	glog.Flush()
 }
 
 func enableCORS() {

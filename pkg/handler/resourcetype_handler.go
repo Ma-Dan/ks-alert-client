@@ -3,26 +3,11 @@ package handler
 import (
 	"context"
 	"github.com/carmanzhang/ks-alert-client/pkg/client"
-	"github.com/carmanzhang/ks-alert-client/pkg/constant"
 	"github.com/carmanzhang/ks-alert/pkg/dispatcher/pb"
 	"github.com/emicklei/go-restful"
 	"github.com/golang/glog"
-	"google.golang.org/grpc"
 	"net/http"
 )
-
-func CreateResourceType(request *restful.Request, response *restful.Response) {
-
-}
-func RetrieveResourceType(request *restful.Request, response *restful.Response) {
-
-}
-func UpdateResourceType(request *restful.Request, response *restful.Response) {
-
-}
-func DeleteResourceType(request *restful.Request, response *restful.Response) {
-
-}
 
 func HandlerResourceType(request *restful.Request, response *restful.Response) {
 	conn, err := client.GetDispatcherGrpcLoadBalanceClient()
@@ -108,17 +93,4 @@ func HandlerResourceType(request *restful.Request, response *restful.Response) {
 			}
 		}
 	}
-}
-
-// GetProductID by resource_type_name + enterprise_name + product_name
-func GetProductID(conn *grpc.ClientConn) string {
-	cli := pb.NewProductHandlerClient(conn)
-	prod, err := cli.GetProduct(context.Background(), &pb.ProductSpec{
-		ProductName: constant.Product,
-	})
-	if err != nil {
-		glog.Error(err.Error())
-		return ""
-	}
-	return prod.Product.ProductId
 }
