@@ -2,7 +2,6 @@ package service
 
 import (
 	"github.com/carmanzhang/ks-alert-client/pkg/handler"
-	. "github.com/carmanzhang/ks-alert/pkg/dispatcher/pb"
 	"github.com/emicklei/go-restful"
 	"github.com/emicklei/go-restful-openapi"
 )
@@ -18,14 +17,14 @@ func (u AlertAPI) WebService() *restful.WebService {
 
 	tags := []string{"alert apis"}
 
-	ws.Route(ws.POST("/alert").To(handler.CreateAlert).
+	ws.Route(ws.POST("/alert").To(handler.HandlerAlertConfig).
 		Doc("create AlertConfig").
 		Reads(AlertConfig{}).
 		Writes(AlertConfigResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
 	// get batch of alert configs by resource_name
-	ws.Route(ws.GET("/alert").To(handler.RetrieveAlert).
+	ws.Route(ws.GET("/alert").To(handler.HandlerAlertConfig).
 		Doc("retrieve AlertConfig").
 		// get alert config by userid
 		Param(restful.QueryParameter("user_id", "").Required(false)).
@@ -45,13 +44,13 @@ func (u AlertAPI) WebService() *restful.WebService {
 		Writes([]AlertConfigResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
-	ws.Route(ws.PUT("/alert").To(handler.UpdateAlert).
+	ws.Route(ws.PUT("/alert").To(handler.HandlerAlertConfig).
 		Doc("update AlertConfig").
 		Reads(AlertConfig{}).
 		Writes(AlertConfigResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
-	ws.Route(ws.DELETE("/alert").To(handler.DeleteAlert).
+	ws.Route(ws.DELETE("/alert").To(handler.HandlerAlertConfig).
 		Doc("delete AlertConfig").
 		Param(restful.QueryParameter("alert_config_id", "delete alert config by id")).
 		Writes(AlertConfigResponse{}).

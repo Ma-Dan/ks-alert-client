@@ -34,6 +34,8 @@ func HandlerAlertRule(request *restful.Request, response *restful.Response) {
 
 	method := request.Request.Method
 
+	var rsp *pb.AlertRuleGroupResponse
+
 	switch method {
 	case http.MethodGet, http.MethodDelete:
 
@@ -41,10 +43,12 @@ func HandlerAlertRule(request *restful.Request, response *restful.Response) {
 		ruleGroupIDs, err := DoGetAlertRuleGroupID(params)
 		if err != nil {
 			glog.Errorln(err.Error())
+			response.WriteHeaderAndEntity(http.StatusInternalServerError, &pb.ReceiverGroupResponse{Error: &pb.Error{Text: err.Error()}})
 		}
 
 		if method == http.MethodGet {
 			var ruleGroupSpec *pb.AlertRuleGroupSpec
+
 			if len(ruleGroupIDs) == 0 {
 				if params.ResourceType != "" {
 					ruleGroupSpec = &pb.AlertRuleGroupSpec{
@@ -52,23 +56,22 @@ func HandlerAlertRule(request *restful.Request, response *restful.Response) {
 						ResourceTypeId: params.ResourceType,
 					}
 					// find build-in rule group
-					rsp, err := cli.GetAlertRule(context.Background(), ruleGroupSpec)
-
-					if err != nil {
-						glog.Errorln(err)
-						response.WriteHeaderAndEntity(http.StatusInternalServerError, &[]pb.AlertRuleGroupResponse{
-							{
-								Error: &pb.Error{Text: err.Error()},
-							}})
-						return
-					} else {
-						response.WriteHeaderAndEntity(http.StatusOK, &[]pb.AlertRuleGroupResponse{*rsp})
-					}
+					rsp, _ = cli.GetAlertRule(context.Background(), ruleGroupSpec)
 
 				} else {
 					// error invalid params
-
+					response.WriteHeaderAndEntity(http.StatusInternalServerError, &[]pb.AlertRuleGroupResponse{{Error: &pb.Error{Text: "no rule group id specified"}}})
 				}
+
+				if rsp != nil && rsp.Error.Code > 0 {
+					glog.Errorln(rsp.Error)
+					response.WriteHeaderAndEntity(http.StatusInternalServerError, &[]pb.AlertRuleGroupResponse{*rsp})
+					return
+				} else {
+					response.WriteHeaderAndEntity(http.StatusOK, &[]pb.AlertRuleGroupResponse{*rsp})
+					return
+				}
+
 			} else {
 
 				var rsps []pb.AlertRuleGroupResponse
@@ -77,39 +80,22 @@ func HandlerAlertRule(request *restful.Request, response *restful.Response) {
 						AlertRuleGroupId: ruleGroupIDs[i],
 					}
 
-					rsp, err := cli.GetAlertRule(context.Background(), ruleGroupSpec)
-
-					if err != nil {
-						glog.Errorln(err)
-						rsp.Error = &pb.Error{Text: err.Error(), Code: pb.Error_ACCESS_DENIED}
-					}
+					rsp, _ := cli.GetAlertRule(context.Background(), ruleGroupSpec)
 					rsps = append(rsps, *rsp)
 				}
 
 				response.WriteHeaderAndEntity(http.StatusOK, rsps)
-
+				return
 			}
 		} else {
 
 			if len(ruleGroupIDs) != 1 {
 				errStr := "can only delete one rule group at once"
-				response.WriteHeaderAndEntity(http.StatusOK, &pb.AlertRuleGroupResponse{Error: &pb.Error{Text: errStr, Code: pb.Error_ACCESS_DENIED}})
+				response.WriteHeaderAndEntity(http.StatusOK, &pb.AlertRuleGroupResponse{Error: &pb.Error{Text: errStr}})
 				return
 
 			} else {
-				rsp, err := cli.DeleteAlertRule(context.Background(), &pb.AlertRuleGroupSpec{
-					AlertRuleGroupId: ruleGroupIDs[0],
-				})
-
-				if err != nil {
-					glog.Errorln(err)
-					response.WriteHeaderAndEntity(http.StatusInternalServerError, &pb.AlertRuleGroupResponse{Error: &pb.Error{Text: err.Error(), Code: pb.Error_ACCESS_DENIED}})
-					return
-				} else {
-					response.WriteHeaderAndEntity(http.StatusOK, rsp)
-					return
-				}
-
+				rsp, _ = cli.DeleteAlertRule(context.Background(), &pb.AlertRuleGroupSpec{AlertRuleGroupId: ruleGroupIDs[0]})
 			}
 		}
 
@@ -124,27 +110,17 @@ func HandlerAlertRule(request *restful.Request, response *restful.Response) {
 		}
 
 		if method == http.MethodPost {
-			rsp, err := cli.CreateAlertRule(context.Background(), &ruleGroup)
-
-			if err != nil {
-				glog.Errorln(err)
-				response.WriteHeaderAndEntity(http.StatusInternalServerError, &pb.AlertRuleGroupResponse{Error: &pb.Error{Text: err.Error()}})
-				return
-			} else {
-				response.WriteHeaderAndEntity(http.StatusOK, rsp)
-			}
+			rsp, _ = cli.CreateAlertRule(context.Background(), &ruleGroup)
 		} else {
-
-			rsp, err := cli.UpdateAlertRule(context.Background(), &ruleGroup)
-
-			if err != nil {
-				glog.Errorln(err)
-				response.WriteHeaderAndEntity(http.StatusInternalServerError, &pb.AlertRuleGroupResponse{Error: &pb.Error{Text: err.Error()}})
-				return
-			} else {
-				response.WriteHeaderAndEntity(http.StatusOK, rsp)
-			}
+			rsp, _ = cli.UpdateAlertRule(context.Background(), &ruleGroup)
 		}
+	}
+
+	if rsp != nil && rsp.Error.Code > 0 {
+		glog.Errorln(rsp.Error)
+		response.WriteHeaderAndEntity(http.StatusInternalServerError, rsp)
+	} else {
+		response.WriteHeaderAndEntity(http.StatusOK, rsp)
 	}
 }
 
