@@ -3,34 +3,11 @@ package handler
 import (
 	"context"
 	"fmt"
-	. "github.com/carmanzhang/ks-alert-client/pkg/client"
 	"github.com/carmanzhang/ks-alert/pkg/dispatcher/pb"
 	"github.com/emicklei/go-restful"
 	"github.com/golang/glog"
 	"net/http"
 )
-
-func CreateAlert(request *restful.Request, response *restful.Response) {
-
-	var alertConfig pb.AlertConfig
-	err := request.ReadEntity(&alertConfig)
-	if err != nil {
-		glog.Errorln(err)
-	}
-
-	conn, err := GetDispatcherGrpcLoadBalanceClient()
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	//defer conn.Close()
-
-	client := pb.NewAlertConfigHandlerClient(conn)
-	//
-	alertConfigResponse, err := client.CreateAlertConfig(context.Background(), &alertConfig)
-	fmt.Println(alertConfigResponse, err)
-
-}
 
 func RetrieveAlert(request *restful.Request, response *restful.Response) {
 	//// find alert_configs by user_id
@@ -118,18 +95,7 @@ func RetrieveAlert(request *restful.Request, response *restful.Response) {
 	//}
 }
 
-func UpdateAlert(request *restful.Request, response *restful.Response) {
-
-}
-
-func DeleteAlert(request *restful.Request, response *restful.Response) {
-
-}
-
 func RetrieveAlertHistory(request *restful.Request, response *restful.Response) {
-
-}
-func ListAlertRules(request *restful.Request, response *restful.Response) {
 
 }
 
@@ -155,7 +121,10 @@ func HandlerAlertConfig(request *restful.Request, response *restful.Response) {
 		if method == http.MethodGet {
 			rsp, _ = cli.GetAlertConfig(context.Background(), &pb.AlertConfigSpec{AlertConfigId: configID})
 		} else {
-			rsp, _ = cli.DeleteAlertConfig(context.Background(), &pb.AlertConfigSpec{AlertConfigId: configID})
+			rsp, err = cli.DeleteAlertConfig(context.Background(), &pb.AlertConfigSpec{AlertConfigId: configID})
+			if err != nil {
+				fmt.Print(err)
+			}
 		}
 
 	case http.MethodPost, http.MethodPut:
@@ -172,6 +141,7 @@ func HandlerAlertConfig(request *restful.Request, response *restful.Response) {
 			rsp, _ = cli.CreateAlertConfig(context.Background(), &alertConfig)
 		} else {
 			rsp, _ = cli.UpdateAlertConfig(context.Background(), &alertConfig)
+
 		}
 	}
 
