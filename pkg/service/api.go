@@ -2,6 +2,7 @@ package service
 
 import (
 	"github.com/carmanzhang/ks-alert-client/pkg/handler"
+	. "github.com/carmanzhang/ks-alert/pkg/dispatcher/pb"
 	"github.com/emicklei/go-restful"
 	"github.com/emicklei/go-restful-openapi"
 )
