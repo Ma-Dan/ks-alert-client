@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/carmanzhang/ks-alert-client/pkg/client"
-	"github.com/carmanzhang/ks-alert/pkg/dispatcher/pb"
+	"github.com/carmanzhang/ks-alert/pkg/pb"
 	"github.com/emicklei/go-restful"
 	"github.com/golang/glog"
 	"net/http"
@@ -139,10 +139,13 @@ func HandlerAlertConfig(request *restful.Request, response *restful.Response) {
 		}
 
 		if method == http.MethodPost {
-			rsp, _ = cli.CreateAlertConfig(context.Background(), &alertConfig)
+			rsp, err = cli.CreateAlertConfig(context.Background(), &alertConfig)
 		} else {
-			rsp, _ = cli.UpdateAlertConfig(context.Background(), &alertConfig)
+			rsp, err = cli.UpdateAlertConfig(context.Background(), &alertConfig)
 
+		}
+		if err != nil {
+			fmt.Println(err.Error())
 		}
 	}
 

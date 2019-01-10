@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"github.com/carmanzhang/ks-alert-client/pkg/client"
-	"github.com/carmanzhang/ks-alert/pkg/dispatcher/pb"
+	"github.com/carmanzhang/ks-alert/pkg/pb"
 	"github.com/emicklei/go-restful"
 	"github.com/golang/glog"
 	"net/http"
