@@ -3,7 +3,8 @@ package handler
 import (
 	"context"
 	"fmt"
-	"github.com/carmanzhang/ks-alert/pkg/dispatcher/pb"
+	"github.com/carmanzhang/ks-alert-client/pkg/client"
+	"github.com/carmanzhang/ks-alert/pkg/pb"
 	"github.com/emicklei/go-restful"
 	"github.com/golang/glog"
 	"net/http"
@@ -100,7 +101,7 @@ func RetrieveAlertHistory(request *restful.Request, response *restful.Response) 
 }
 
 func HandlerAlertConfig(request *restful.Request, response *restful.Response) {
-	conn, err := GetDispatcherGrpcLoadBalanceClient()
+	conn, err := client.GetDispatcherGrpcLoadBalanceClient()
 
 	if err != nil {
 		glog.Errorln(err)
@@ -138,10 +139,13 @@ func HandlerAlertConfig(request *restful.Request, response *restful.Response) {
 		}
 
 		if method == http.MethodPost {
-			rsp, _ = cli.CreateAlertConfig(context.Background(), &alertConfig)
+			rsp, err = cli.CreateAlertConfig(context.Background(), &alertConfig)
 		} else {
-			rsp, _ = cli.UpdateAlertConfig(context.Background(), &alertConfig)
+			rsp, err = cli.UpdateAlertConfig(context.Background(), &alertConfig)
 
+		}
+		if err != nil {
+			fmt.Println(err.Error())
 		}
 	}
 
