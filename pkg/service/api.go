@@ -2,6 +2,7 @@ package service
 
 import (
 	"github.com/carmanzhang/ks-alert-client/pkg/handler"
+	. "github.com/carmanzhang/ks-alert/pkg/pb"
 	"github.com/emicklei/go-restful"
 	"github.com/emicklei/go-restful-openapi"
 )
@@ -11,7 +12,8 @@ type AlertAPI struct{}
 func (u AlertAPI) WebService() *restful.WebService {
 	ws := new(restful.WebService)
 	ws.
-		Path("/apis/alerting.kubesphere.io/v1").
+		//Path("/apis/alerting.kubesphere.io/v1").
+		Path("/api/v1").
 		Consumes(restful.MIME_JSON).
 		Produces(restful.MIME_JSON)
 
@@ -87,29 +89,29 @@ func (u AlertAPI) WebService() *restful.WebService {
 	tags = []string{"silence apis"}
 
 	// silence a alert_rule in specific period
-	ws.Route(ws.POST("/silence").To(handler.CreateSilence).
+	ws.Route(ws.POST("/silence").To(handler.HandlerSilence).
 		Doc("create silence").
 		Reads(Silence{}).
 		Writes(SilenceResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
-	ws.Route(ws.GET("/silence").To(handler.RetrieveSilence).
+	ws.Route(ws.GET("/silence").To(handler.HandlerSilence).
 		Doc("retrieve silence").
-		Param(restful.QueryParameter("alert_config_id", "")).
+		//Param(restful.QueryParameter("alert_config_id", "")).
 		Param(restful.QueryParameter("alert_rule_id", "")).
 		Param(restful.QueryParameter("resource_id", "")).
 		Writes(SilenceResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
-	ws.Route(ws.PUT("/silence").To(handler.UpdateSilence).
+	ws.Route(ws.PUT("/silence").To(handler.HandlerSilence).
 		Doc("update silence").
 		Reads(Silence{}).
 		Writes(SilenceResponse{}).
 		Metadata(restfulspec.KeyOpenAPITags, tags))
 
-	ws.Route(ws.DELETE("/silence").To(handler.DeleteSilence).
+	ws.Route(ws.DELETE("/silence").To(handler.HandlerSilence).
 		Doc("delete silence").
-		Param(restful.QueryParameter("alert_config_id", "")).
+		//Param(restful.QueryParameter("alert_config_id", "")).
 		Param(restful.QueryParameter("alert_rule_id", "")).
 		Param(restful.QueryParameter("resource_id", "")).
 		Writes(SilenceResponse{}).

@@ -1,7 +1,6 @@
 package service
 
 import (
-	"flag"
 	"github.com/emicklei/go-restful"
 	"github.com/emicklei/go-restful-openapi"
 	"github.com/go-openapi/spec"
@@ -11,8 +10,6 @@ import (
 )
 
 func Run() {
-	flag.Parse()
-
 	api := AlertAPI{}
 	restful.DefaultContainer.Add(api.WebService())
 	handleSwagger()
