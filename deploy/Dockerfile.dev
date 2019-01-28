@@ -1,0 +1,4 @@
+FROM carmanzhang/alerting-base
+RUN mkdir /alerting
+WORKDIR /alerting
+COPY alerting-ks-client .

@@ -23,6 +23,8 @@ func HandlerSeverity(request *restful.Request, response *restful.Response) {
 
 	method := request.Request.Method
 
+	var rsp *pb.SeverityResponse
+
 	switch method {
 	case http.MethodGet, http.MethodDelete:
 		severityID := request.QueryParameter("severity_id")
@@ -36,26 +38,18 @@ func HandlerSeverity(request *restful.Request, response *restful.Response) {
 		}
 
 		if method == http.MethodGet {
-			rsp, err := cli.GetSeverity(context.Background(), &sevSpec)
-
+			rsps, err := cli.GetSeverity(context.Background(), &sevSpec)
 			if err != nil {
 				glog.Errorln(err)
 				response.WriteHeaderAndEntity(http.StatusInternalServerError, &pb.SeveritiesResponse{Error: &pb.Error{Text: err.Error()}})
 				return
 			} else {
-				response.WriteHeaderAndEntity(http.StatusOK, rsp)
+				response.WriteHeaderAndEntity(http.StatusOK, rsps)
+				return
 			}
 
 		} else {
-			rsp, err := cli.DeleteSeverity(context.Background(), &sevSpec)
-
-			if err != nil {
-				glog.Errorln(err)
-				response.WriteHeaderAndEntity(http.StatusInternalServerError, &pb.SeverityResponse{Error: &pb.Error{Text: err.Error()}})
-				return
-			} else {
-				response.WriteHeaderAndEntity(http.StatusOK, rsp)
-			}
+			rsp, err = cli.DeleteSeverity(context.Background(), &sevSpec)
 		}
 
 	case http.MethodPost, http.MethodPut:
@@ -76,34 +70,26 @@ func HandlerSeverity(request *restful.Request, response *restful.Response) {
 				return
 			}
 
-			rsp, err := cli.CreateSeverity(context.Background(), &severity)
-
-			if err != nil {
-				glog.Errorln(err)
-				response.WriteHeaderAndEntity(http.StatusInternalServerError, &pb.SeverityResponse{Error: &pb.Error{Text: err.Error()}})
-				return
-			} else {
-				response.WriteHeaderAndEntity(http.StatusOK, rsp)
-			}
+			rsp, err = cli.CreateSeverity(context.Background(), &severity)
 
 		} else {
-
 			if severity.SeverityId == "" {
 				errStr := "severity id must be specified"
 				response.WriteHeaderAndEntity(http.StatusInternalServerError, &pb.SeverityResponse{Error: &pb.Error{Text: errStr}})
 				return
 			}
 
-			rsp, err := cli.UpdateSeverity(context.Background(), &severity)
+			rsp, err = cli.UpdateSeverity(context.Background(), &severity)
 
-			if err != nil {
-				glog.Errorln(err)
-				response.WriteHeaderAndEntity(http.StatusInternalServerError, &pb.SeverityResponse{Error: &pb.Error{Text: err.Error()}})
-				return
-			} else {
-				response.WriteHeaderAndEntity(http.StatusOK, rsp)
-			}
 		}
+	}
+
+	if err != nil {
+		glog.Errorln(err)
+		response.WriteHeaderAndEntity(http.StatusInternalServerError, &pb.SeverityResponse{Error: &pb.Error{Text: err.Error()}})
+		return
+	} else {
+		response.WriteHeaderAndEntity(http.StatusOK, rsp)
 	}
 
 }
