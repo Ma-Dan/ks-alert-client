@@ -27,12 +27,6 @@ func HandlerResource(request *restful.Request, response *restful.Response) {
 	switch method {
 	case http.MethodGet, http.MethodDelete:
 		rgID := request.QueryParameter("resource_group_id")
-		//recvID := request.QueryParameter("receiver_id")
-
-		//if rgID == "" {
-		//	response.WriteHeaderAndEntity(http.StatusInternalServerError, &pb.ResourceGroupResponse{Error: &pb.Error{Text: "resource group id must be specified"}})
-		//	return
-		//}
 
 		if method == http.MethodGet {
 			rsp, _ = cli.GetResource(context.Background(), &pb.ResourceGroupSpec{ResourceGroupId: rgID})
