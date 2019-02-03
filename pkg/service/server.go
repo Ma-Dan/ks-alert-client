@@ -27,7 +27,7 @@ func enableCORS() {
 		AllowedHeaders: []string{"Content-Type", "Accept"},
 		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE"},
 		CookiesAllowed: false,
-		//AllowedDomains:[]string{"*"},
+		AllowedDomains:[]string{"*"},
 		Container: restful.DefaultContainer}
 	restful.DefaultContainer.Filter(cors.Filter)
 }
@@ -38,7 +38,7 @@ func handleSwagger() {
 		APIPath:     "/apidocs.json",
 		PostBuildSwaggerObjectHandler: enrichSwaggerObject}
 	restful.DefaultContainer.Add(restfulspec.NewOpenAPIService(config))
-	http.Handle("/apidocs/", http.StripPrefix("/apidocs/", http.FileServer(http.Dir("ks-alert-client/pkg/swagger-ui/dist"))))
+	http.Handle("/apidocs/", http.StripPrefix("/apidocs/", http.FileServer(http.Dir("/alerting/swagger-ui/dist"))))
 }
 
 func enrichSwaggerObject(swo *spec.Swagger) {

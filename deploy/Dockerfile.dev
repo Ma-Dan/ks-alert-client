@@ -1,4 +1,5 @@
 FROM alerting-base
-RUN mkdir /alerting
+RUN mkdir -p /alerting/swagger-ui
 WORKDIR /alerting
 COPY alerting-ks-client .
+COPY swagger-ui ./swagger-ui
