@@ -2,7 +2,7 @@ package dbutil
 
 import (
 	"errors"
-	"github.com/carmanzhang/ks-alert-client/pkg/option"
+	"kubesphere.io/ks-alert-client/pkg/option"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )

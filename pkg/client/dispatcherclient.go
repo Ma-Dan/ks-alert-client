@@ -2,7 +2,7 @@ package client
 
 import (
 	"fmt"
-	"github.com/carmanzhang/ks-alert-client/pkg/option"
+	"kubesphere.io/ks-alert-client/pkg/option"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"k8s.io/klog/glog"

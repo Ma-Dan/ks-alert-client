@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/carmanzhang/ks-alert-client/pkg/handler"
-	. "github.com/carmanzhang/ks-alert/pkg/pb"
+	"kubesphere.io/ks-alert-client/pkg/handler"
+	. "kubesphere.io/ks-alert/pkg/pb"
 	"github.com/emicklei/go-restful"
 	"github.com/emicklei/go-restful-openapi"
 )

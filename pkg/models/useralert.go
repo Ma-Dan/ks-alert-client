@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/carmanzhang/ks-alert-client/pkg/utils/dbutil"
+	"kubesphere.io/ks-alert-client/pkg/utils/dbutil"
 	"github.com/jinzhu/gorm"
 )
 

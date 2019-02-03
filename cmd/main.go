@@ -1,6 +1,6 @@
 package main
 
-import "github.com/carmanzhang/ks-alert-client/pkg/service"
+import "kubesphere.io/ks-alert-client/pkg/service"
 
 func main() {
 	service.Run()
