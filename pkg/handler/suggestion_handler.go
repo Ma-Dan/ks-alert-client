@@ -25,11 +25,10 @@ func HandlerSuggestion(request *restful.Request, response *restful.Response) {
 	switch method {
 	case http.MethodGet:
 
-		configID := request.QueryParameter("alert_config_id")
 		ruleID := request.QueryParameter("alert_rule_id")
 		resourceID := request.QueryParameter("resource_id")
 
-		rsp, err := cli.GetSuggestion(context.Background(), &pb.Suggestion{AlertConfigId: configID, AlertRuleId: ruleID, ResourceId: resourceID})
+		rsp, err := cli.GetSuggestion(context.Background(), &pb.Suggestion{AlertRuleId: ruleID, ResourceId: resourceID})
 
 		if err != nil {
 			glog.Errorln(err)
